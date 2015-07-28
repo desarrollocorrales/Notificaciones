@@ -50,12 +50,6 @@
     <Reference Include="FirebirdSql.Data.FirebirdClient">
       <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.4.5.0.0\lib\net40-client\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
-    <Reference Include="LinqToExcel">
-      <HintPath>..\packages\LinqToExcel.1.9.0\lib\LinqToExcel.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\LinqToExcel.1.9.0\lib\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Remotion">
       <HintPath>..\packages\LinqToExcel.1.9.0\lib\Remotion.dll</HintPath>
     </Reference>
@@ -68,6 +62,9 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -77,38 +74,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\FirebirdDAL.cs" />
+    <Compile Include="Entity\Calendario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Calendario.edmx</DependentUpon>
+    </Compile>
     <Compile Include="FormAnimator.cs" />
-    <Compile Include="Frm_Configuracion.cs">
+    <Compile Include="GUIs\Frm_Configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Configuracion.Designer.cs">
+    <Compile Include="GUIs\Frm_Configuracion.Designer.cs">
       <DependentUpon>Frm_Configuracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\Configuracion.cs" />
+    <Compile Include="GUIs\Frm_Eventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Frm_Eventos.Designer.cs">
+      <DependentUpon>Frm_Eventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Recordatorio.cs" />
     <Compile Include="Modelos\ValoresGlobales.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="Notification.cs">
+    <Compile Include="GUIs\Notification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Notification.designer.cs">
+    <Compile Include="GUIs\Notification.designer.cs">
       <DependentUpon>Notification.cs</DependentUpon>
     </Compile>
-    <Compile Include="NotificationLauncher.cs">
+    <Compile Include="GUIs\NotificationLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NotificationLauncher.Designer.cs">
+    <Compile Include="GUIs\NotificationLauncher.Designer.cs">
       <DependentUpon>NotificationLauncher.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Frm_Configuracion.resx">
+    <EmbeddedResource Include="GUIs\Frm_Configuracion.resx">
       <DependentUpon>Frm_Configuracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Notification.resx">
+    <EmbeddedResource Include="GUIs\Frm_Eventos.resx">
+      <DependentUpon>Frm_Eventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Notification.resx">
       <DependentUpon>Notification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NotificationLauncher.resx">
+    <EmbeddedResource Include="GUIs\NotificationLauncher.resx">
       <DependentUpon>NotificationLauncher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -126,7 +136,12 @@
     <None Include="Configuracion\Configuracion.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EntityDeploy Include="Entity\Calendario.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Calendario.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ToastNotifications.Entity.eventos.datasource" />
     <None Include="Properties\DataSources\ToastNotifications.Modelos.Configuracion.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,6 +162,7 @@
     <None Include="Iconos\play_icon.gif" />
     <None Include="Iconos\gear-icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

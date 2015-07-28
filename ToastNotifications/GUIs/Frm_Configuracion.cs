@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ToastNotifications
+namespace ToastNotifications.GUIs
 {
     public partial class Frm_Configuracion : Form
     {

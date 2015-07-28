@@ -1,4 +1,4 @@
-﻿namespace ToastNotifications
+﻿namespace ToastNotifications.GUIs
 {
     partial class Frm_Configuracion
     {
@@ -51,7 +51,7 @@
             this.lblTitulo.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(0, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(549, 37);
+            this.lblTitulo.Size = new System.Drawing.Size(557, 37);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Configuración";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -193,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 252);
+            this.ClientSize = new System.Drawing.Size(557, 263);
             this.Controls.Add(this.txbIdentificadorAlmacen);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Cancelar);
@@ -211,7 +211,6 @@
             this.Controls.Add(this.lblTitulo);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximumSize = new System.Drawing.Size(565, 290);
             this.MinimumSize = new System.Drawing.Size(565, 290);
             this.Name = "Frm_Configuracion";
             this.ShowIcon = false;

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventosModelStoreContainer" CdmEntityContainer="EventosEntities">
+    <EntitySetMapping Name="tipos_evento">
+      <EntityTypeMapping TypeName="EventosModel.tipos_evento">
+        <MappingFragment StoreEntitySet="tipos_evento">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_tipo_evento" ColumnName="id_tipo_evento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eventos">
+      <EntityTypeMapping TypeName="EventosModel.eventos">
+        <MappingFragment StoreEntitySet="eventos">
+          <ScalarProperty Name="dia_semana" ColumnName="dia_semana" />
+          <ScalarProperty Name="es_semanal" ColumnName="es_semanal" />
+          <ScalarProperty Name="dia_limite" ColumnName="dia_limite" />
+          <ScalarProperty Name="id_tipo_evento" ColumnName="id_tipo_evento" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="notas" ColumnName="notas" />
+          <ScalarProperty Name="banco" ColumnName="banco" />
+          <ScalarProperty Name="cuenta_bancaria" ColumnName="cuenta_bancaria" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

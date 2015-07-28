@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastNotifications", "ToastNotifications\ToastNotifications.csproj", "{380D8D88-386C-4C50-9A54-800F79FDF7D2}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Instalacion Notificaciones", "Instalacion Notificaciones\Instalacion Notificaciones.vdproj", "{D12998E0-3BCA-459A-B23E-2A9149598A56}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,8 +13,6 @@ Global
 		{380D8D88-386C-4C50-9A54-800F79FDF7D2}.Debug|x86.Build.0 = Debug|x86
 		{380D8D88-386C-4C50-9A54-800F79FDF7D2}.Release|x86.ActiveCfg = Release|x86
 		{380D8D88-386C-4C50-9A54-800F79FDF7D2}.Release|x86.Build.0 = Release|x86
-		{D12998E0-3BCA-459A-B23E-2A9149598A56}.Debug|x86.ActiveCfg = Debug
-		{D12998E0-3BCA-459A-B23E-2A9149598A56}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ToastNotifications.Modelos;
 
-namespace ToastNotifications
+namespace ToastNotifications.GUIs
 {
     public partial class Notification : Form
     {
@@ -15,7 +15,6 @@ namespace ToastNotifications
         private bool _allowFocus;
         private readonly FormAnimator _animator;
         private IntPtr _currentForegroundWindow;
-        public List<Configuracion> lstExistencias;
 
         /// <summary>
         /// 
@@ -36,8 +35,6 @@ namespace ToastNotifications
             _animator = new FormAnimator(this, animation, direction, 500);
 
             Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, Width - 5, Height - 5, 20, 20));
-
-            lstExistencias = new List<Configuracion>();
         }
 
         #region Methods
@@ -62,10 +59,6 @@ namespace ToastNotifications
 
         private void Notification_Load(object sender, EventArgs e)
         {
-
-            gridExistencias.DataSource = lstExistencias;
-            gvExistencias.BestFitColumns();
-
             // Display the form just above the system tray.
             Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width,
                                  Screen.PrimaryScreen.WorkingArea.Height - Height);
@@ -131,5 +124,14 @@ namespace ToastNotifications
         }
 
         #endregion // Event Handlers
+
+        #region * * *  Cargar Recordatorios  * * *
+        
+        private void CargarEventos()
+        {
+
+        }
+
+        #endregion
     }
 }

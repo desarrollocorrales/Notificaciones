@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventosModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="EventosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tipos_evento" EntityType="EventosModel.tipos_evento" />
+    <EntitySet Name="eventos" EntityType="EventosModel.eventos" />
+    <AssociationSet Name="fk_tipo_evento" Association="EventosModel.fk_tipo_evento">
+      <End Role="tipos_evento" EntitySet="tipos_evento" />
+      <End Role="eventos" EntitySet="eventos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tipos_evento">
+    <Key>
+      <PropertyRef Name="id_tipo_evento" />
+    </Key>
+    <Property Type="String" Name="id_tipo_evento" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="eventos" Relationship="EventosModel.fk_tipo_evento" FromRole="tipos_evento" ToRole="eventos" />
+  </EntityType>
+  <EntityType Name="eventos">
+    <Key>
+      <PropertyRef Name="id_evento" />
+    </Key>
+    <Property Type="Int64" Name="id_evento" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="cantidad" Nullable="false" />
+    <Property Type="String" Name="cuenta_bancaria" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="banco" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="notas" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="activo" Nullable="false" />
+    <Property Type="String" Name="id_tipo_evento" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="dia_limite" />
+    <Property Type="Boolean" Name="es_semanal" />
+    <Property Type="String" Name="dia_semana" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tipos_evento" Relationship="EventosModel.fk_tipo_evento" FromRole="eventos" ToRole="tipos_evento" />
+  </EntityType>
+  <Association Name="fk_tipo_evento">
+    <End Type="EventosModel.tipos_evento" Role="tipos_evento" Multiplicity="0..1" />
+    <End Type="EventosModel.eventos" Role="eventos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_evento">
+        <PropertyRef Name="id_tipo_evento" />
+      </Principal>
+      <Dependent Role="eventos">
+        <PropertyRef Name="id_tipo_evento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EventosModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EventosModelStoreContainer">
+          <EntitySet Name="eventos" EntityType="EventosModel.Store.eventos" store:Type="Tables" Schema="calendario_pagos" />
+          <EntitySet Name="tipos_evento" EntityType="EventosModel.Store.tipos_evento" store:Type="Tables" Schema="calendario_pagos" />
+          <AssociationSet Name="fk_tipo_evento" Association="EventosModel.Store.fk_tipo_evento">
+            <End Role="tipos_evento" EntitySet="tipos_evento" />
+            <End Role="eventos" EntitySet="eventos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="eventos">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="cantidad" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="cuenta_bancaria" Type="varchar" MaxLength="50" />
+          <Property Name="banco" Type="varchar" MaxLength="50" />
+          <Property Name="notas" Type="varchar" MaxLength="250" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="id_tipo_evento" Type="char" MaxLength="1" />
+          <Property Name="dia_limite" Type="utinyint" />
+          <Property Name="es_semanal" Type="bit" />
+          <Property Name="dia_semana" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tipos_evento">
+          <Key>
+            <PropertyRef Name="id_tipo_evento" />
+          </Key>
+          <Property Name="id_tipo_evento" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="fk_tipo_evento">
+          <End Role="tipos_evento" Type="EventosModel.Store.tipos_evento" Multiplicity="0..1" />
+          <End Role="eventos" Type="EventosModel.Store.eventos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_evento">
+              <PropertyRef Name="id_tipo_evento" />
+            </Principal>
+            <Dependent Role="eventos">
+              <PropertyRef Name="id_tipo_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EventosModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="EventosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tipos_evento" EntityType="EventosModel.tipos_evento" />
+          <EntitySet Name="eventos" EntityType="EventosModel.eventos" />
+          <AssociationSet Name="fk_tipo_evento" Association="EventosModel.fk_tipo_evento">
+            <End Role="tipos_evento" EntitySet="tipos_evento" />
+            <End Role="eventos" EntitySet="eventos" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="tipos_evento">
+          <Key>
+            <PropertyRef Name="id_tipo_evento" />
+          </Key>
+          <Property Type="String" Name="id_tipo_evento" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="eventos" Relationship="EventosModel.fk_tipo_evento" FromRole="tipos_evento" ToRole="eventos" />
+        </EntityType>
+        <EntityType Name="eventos">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Type="Int64" Name="id_evento" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="cantidad" Nullable="false" />
+          <Property Type="String" Name="cuenta_bancaria" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="banco" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="notas" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+          <Property Type="String" Name="id_tipo_evento" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="dia_limite" />
+          <Property Type="Boolean" Name="es_semanal" />
+          <Property Type="String" Name="dia_semana" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tipos_evento" Relationship="EventosModel.fk_tipo_evento" FromRole="eventos" ToRole="tipos_evento" />
+        </EntityType>
+        <Association Name="fk_tipo_evento">
+          <End Type="EventosModel.tipos_evento" Role="tipos_evento" Multiplicity="0..1" />
+          <End Type="EventosModel.eventos" Role="eventos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_evento">
+              <PropertyRef Name="id_tipo_evento" />
+            </Principal>
+            <Dependent Role="eventos">
+              <PropertyRef Name="id_tipo_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EventosModelStoreContainer" CdmEntityContainer="EventosEntities">
+          <EntitySetMapping Name="tipos_evento">
+            <EntityTypeMapping TypeName="EventosModel.tipos_evento">
+              <MappingFragment StoreEntitySet="tipos_evento">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_tipo_evento" ColumnName="id_tipo_evento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eventos">
+            <EntityTypeMapping TypeName="EventosModel.eventos">
+              <MappingFragment StoreEntitySet="eventos">
+                <ScalarProperty Name="dia_semana" ColumnName="dia_semana" />
+                <ScalarProperty Name="es_semanal" ColumnName="es_semanal" />
+                <ScalarProperty Name="dia_limite" ColumnName="dia_limite" />
+                <ScalarProperty Name="id_tipo_evento" ColumnName="id_tipo_evento" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+                <ScalarProperty Name="banco" ColumnName="banco" />
+                <ScalarProperty Name="cuenta_bancaria" ColumnName="cuenta_bancaria" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Calendario">
+        <EntityTypeShape EntityType="EventosModel.tipos_evento" Width="1.5" PointX="2.875" PointY="1.5" Height="1.427958984375" />
+        <EntityTypeShape EntityType="EventosModel.eventos" Width="1.5" PointX="0.5" PointY="0.5" Height="3.0714322916666656" />
+        <AssociationConnector Association="EventosModel.fk_tipo_evento" >
+          <ConnectorPoint PointX="2.875" PointY="2.2139794921875" />
+          <ConnectorPoint PointX="2" PointY="2.2139794921875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
