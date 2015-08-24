@@ -20,17 +20,9 @@ C:\Users\Desarrollo\Desktop\windows-toast-notifications-master\ToastNotification
 C:\Users\Desarrollo\Desktop\windows-toast-notifications-master\ToastNotifications\bin\Debug\Configuracion\Leeme.txt
 C:\Users\Desarrollo\Desktop\windows-toast-notifications-master\ToastNotifications\bin\Debug\Configuracion\Configuracion.xls
 C:\Users\Desarrollo\Desktop\windows-toast-notifications-master\ToastNotifications\obj\x86\Debug\ToastNotifications.Frm_Configuracion.resources
-D:\Github\Notificaciones\ToastNotifications\bin\Debug\Configuracion\Leeme.txt
-D:\Github\Notificaciones\ToastNotifications\bin\Debug\Configuracion\Configuracion.xls
 D:\Github\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe.config
 D:\Github\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe
 D:\Github\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.pdb
-D:\Github\Notificaciones\ToastNotifications\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
-D:\Github\Notificaciones\ToastNotifications\bin\Debug\Remotion.Data.Linq.dll
-D:\Github\Notificaciones\ToastNotifications\bin\Debug\Remotion.dll
-D:\Github\Notificaciones\ToastNotifications\bin\Debug\Remotion.Interfaces.dll
-D:\Github\Notificaciones\ToastNotifications\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
-D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Configuracion.resources
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Notification.resources
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.NotificationLauncher.resources
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.Properties.Resources.resources
@@ -39,4 +31,37 @@ D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.pdb
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csprojResolveAssemblyReference.cache
-D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Eventos.resources
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe.config
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.pdb
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\MySql.Data.dll
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\Remotion.dll
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\Remotion.Interfaces.dll
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csprojResolveAssemblyReference.cache
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.SuperNotification.resources
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Notification.resources
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.NotificationLauncher.resources
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.Properties.Resources.resources
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csproj.GenerateResource.Cache
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe.licenses
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.pdb
+C:\Users\Desarrollo\Documents\GitHub\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Autorizar.resources
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe.config
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.pdb
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.pdb
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csprojResolveAssemblyReference.cache
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Autorizar.resources
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.SuperNotification.resources
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Notification.resources
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.NotificationLauncher.resources
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.Properties.Resources.resources
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csproj.GenerateResource.Cache
+D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe.licenses
+D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Autorizar.resources
+D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.SuperNotification.resources

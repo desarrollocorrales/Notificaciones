@@ -1,1 +1,0 @@
-﻿Aqui se almacena el archivo de configuracion para la aplicacion de notificaciones de Grupo Corrales.

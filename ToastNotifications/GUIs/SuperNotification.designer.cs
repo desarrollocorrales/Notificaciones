@@ -1,6 +1,6 @@
 namespace ToastNotifications.GUIs
 {
-    partial class Notification
+    partial class SuperNotification
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ToastNotifications.GUIs
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notification));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuperNotification));
             this.labelTitle = new System.Windows.Forms.Label();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.configuracionBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -224,7 +224,7 @@ namespace ToastNotifications.GUIs
             this.lblNotas.Size = new System.Drawing.Size(343, 81);
             this.lblNotas.TabIndex = 3;
             // 
-            // Notification
+            // SuperNotification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -243,7 +243,7 @@ namespace ToastNotifications.GUIs
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Notification";
+            this.Name = "SuperNotification";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "EDGE Shop Flag Notification";

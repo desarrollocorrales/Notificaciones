@@ -12,12 +12,15 @@
       <Value Profile="(Default)">User</Value>
     </Setting>
     <Setting Name="Puerto" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">3306</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)">Pass</Value>
     </Setting>
-    <Setting Name="IdentificadorAlmacen" Type="System.Int32" Scope="User">
+    <Setting Name="Minutos" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="id_usuario" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

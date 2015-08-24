@@ -7,10 +7,10 @@ using ToastNotifications.Entity;
 
 namespace ToastNotifications.GUIs
 {
-    public partial class Notification : Form
+    public partial class SuperNotification : Form
     {
         private EventosEntities Contexto;
-        private static List<Notification> openNotifications = new List<Notification>();
+        private static List<SuperNotification> openNotifications = new List<SuperNotification>();
         private bool _allowFocus;
         private readonly FormAnimator _animator;
         private IntPtr _currentForegroundWindow;
@@ -23,7 +23,7 @@ namespace ToastNotifications.GUIs
         /// <param name="duration"></param>
         /// <param name="animation"></param>
         /// <param name="direction"></param>
-        public Notification(FormAnimator.AnimationMethod animation, FormAnimator.AnimationDirection direction)
+        public SuperNotification(FormAnimator.AnimationMethod animation, FormAnimator.AnimationDirection direction)
         {
             InitializeComponent();
 
@@ -59,7 +59,7 @@ namespace ToastNotifications.GUIs
                                  Screen.PrimaryScreen.WorkingArea.Height - Height);
 
             // Move each open form upwards to make room for this one
-            foreach (Notification openForm in openNotifications)
+            foreach (SuperNotification openForm in openNotifications)
             {
                 openForm.Top -= Height;
             }
@@ -92,7 +92,7 @@ namespace ToastNotifications.GUIs
         private void Notification_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Move down any open forms above this one
-            foreach (Notification openForm in openNotifications)
+            foreach (SuperNotification openForm in openNotifications)
             {
                 if (openForm == this)
                 {
@@ -129,18 +129,9 @@ namespace ToastNotifications.GUIs
         {
             Contexto = crearContexto();
 
-            usuarios user = Contexto.usuarios.FirstOrDefault(o => o.id_usuario == Properties.Settings.Default.id_usuario);
-
-            //Tipo de Mes Par o Non
-            string tipoMes = string.Empty;
-            if ((DateTime.Today.Month % 2) == 0)
-                tipoMes = "P";
-            else
-                tipoMes = "N";
-
             lstEventosAMostrar = new List<eventos>();
-            CountEventosPorDiaMes(user.eventos.ToList(), tipoMes);
-            CountEventosSemanal(user.eventos.ToList(), tipoMes);
+            CountEventosPorDiaMes(Contexto.eventos.ToList());
+            CountEventosSemanal(Contexto.eventos.ToList());
 
             gridEventos.DataSource = lstEventosAMostrar;
             gvEventos.BestFitColumns();
@@ -159,7 +150,7 @@ namespace ToastNotifications.GUIs
             return Context;
         }
 
-        private int CountEventosSemanal(List<eventos> lstEventos, string tipoMes)
+        private int CountEventosSemanal(List<eventos> lstEventos)
         {
             //Eventos que son del dia de la semana de hoy
             List<eventos> lstEventosSemana = new List<eventos>();
@@ -169,34 +160,28 @@ namespace ToastNotifications.GUIs
             {
                 case DayOfWeek.Monday:
                     lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "L" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+                        lstEventos.FindAll(o => o.dia_semana == "L" && o.activo == true);
                     break;
 
                 case DayOfWeek.Tuesday:
                     lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "M" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+                        lstEventos.FindAll(o => o.dia_semana == "M" && o.activo == true);
                     break;
                 case DayOfWeek.Wednesday:
                     lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "X" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+                        lstEventos.FindAll(o => o.dia_semana == "X" && o.activo == true);
                     break;
                 case DayOfWeek.Thursday:
                     lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "J" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+                        lstEventos.FindAll(o => o.dia_semana == "J" && o.activo == true);
                     break;
                 case DayOfWeek.Friday:
                     lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "V" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+                        lstEventos.FindAll(o => o.dia_semana == "V" && o.activo == true);
                     break;
                 case DayOfWeek.Saturday:
                     lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "S" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+                        lstEventos.FindAll(o => o.dia_semana == "S" && o.activo == true);
                     break;
             }
 
@@ -205,12 +190,11 @@ namespace ToastNotifications.GUIs
 
             return lstEventosSemana.Count;
         }
-        private int CountEventosPorDiaMes(List<eventos> lstEventos, string tipoMes)
+        private int CountEventosPorDiaMes(List<eventos> lstEventos)
         {
             int DiaDeHoy = DateTime.Today.Day;
             List<eventos> lstEventosDeHoy =
-                lstEventos.FindAll(o => o.dia_limite == DiaDeHoy && o.activo == true &&
-                                       (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+                lstEventos.FindAll(o => o.dia_limite == DiaDeHoy && o.activo == true);
 
             //Agregar los eventos a la lista
             lstEventosAMostrar.AddRange(lstEventosDeHoy);
