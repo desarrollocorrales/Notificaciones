@@ -43,6 +43,7 @@ namespace ToastNotifications.GUIs
 
                 if (user.id_tipousuario == "S")
                 {
+                    Logger.AgregarLog("Es Super Usuario");
                     //Super Usuario
                     int iDia = DateTime.Today.Day;
 
@@ -73,6 +74,7 @@ namespace ToastNotifications.GUIs
                 }
                 else
                 {
+                    Logger.AgregarLog("Es usuario normal");
                     //Usuario Normal
 
                     //Tipo de Mes Par o Non
@@ -88,7 +90,9 @@ namespace ToastNotifications.GUIs
                     //Eventos que son del dia de hoy
                     int iEventosDelDiaMes = CountEventosPorDiaMes(lstEventos, tipoMes);
 
-                    if (iEventosDelDiaMes != 0 && iEventosDiaSemana != 0)
+                    Logger.AgregarLog(string.Format("Eventos Semanales: {0}. Eventos del dia: {1}", iEventosDiaSemana, iEventosDelDiaMes));
+
+                    if (iEventosDelDiaMes != 0 || iEventosDiaSemana != 0)
                     {
                         toastNotification.Show();
                     }
@@ -96,6 +100,7 @@ namespace ToastNotifications.GUIs
             }
             catch (Exception ex)
             {
+                Logger.AgregarLog(ex.ToString());
                 MessageBox.Show(ex.ToString());
             }
         }
@@ -179,6 +184,7 @@ namespace ToastNotifications.GUIs
         }
         private void Iniciar()
         {
+            Logger.AgregarLog("Iniciar conteo");
             IconoBarra.Visible = true;            
             Temporizador.Enabled = true;
             this.Hide();
@@ -188,19 +194,21 @@ namespace ToastNotifications.GUIs
         {
             Temporizador.Enabled = false;
             frmAutorizar.ShowDialog();
-            //this.Show();            
+            Temporizador.Enabled = true;         
         }
 
         private void Temporizador_Tick(object sender, EventArgs e)
         {
+            MinutosTranscurridos++;
+            Logger.AgregarLog("Minutos transcurridos: " + MinutosTranscurridos);
+
             if (MinutosTranscurridos == Properties.Settings.Default.Minutos)
             {
+                Logger.AgregarLog("Mostrar Eventos del usuario");
+
                 ShowNotification();
+
                 MinutosTranscurridos = 0;
-            }
-            else
-            {
-                MinutosTranscurridos++;
             }
         }
 

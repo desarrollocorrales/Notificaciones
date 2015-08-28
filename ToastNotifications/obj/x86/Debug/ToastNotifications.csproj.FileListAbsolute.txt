@@ -65,3 +65,4 @@ D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\
 D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe.licenses
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Autorizar.resources
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.SuperNotification.resources
+D:\Github\Notificaciones\ToastNotifications\bin\Debug\Logs\Readme.txt

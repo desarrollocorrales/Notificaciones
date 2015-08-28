@@ -98,6 +98,7 @@
       <DependentUpon>SuperNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Configuraciones.cs" />
+    <Compile Include="Modelos\Logger.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="GUIs\Notification.cs">
       <SubType>Form</SubType>
@@ -159,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Corrales Icon.ico" />
+    <Content Include="Logs\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="loading.gif" />
     <None Include="Iconos\Excel.png" />
     <None Include="Iconos\play_icon.gif" />
@@ -186,6 +190,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
