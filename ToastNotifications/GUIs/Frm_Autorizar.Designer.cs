@@ -40,43 +40,43 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(39, 43);
+            this.label1.Location = new System.Drawing.Point(52, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 16);
+            this.label1.Size = new System.Drawing.Size(82, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuario:";
             // 
             // txbUsuario
             // 
-            this.txbUsuario.Location = new System.Drawing.Point(106, 40);
+            this.txbUsuario.Location = new System.Drawing.Point(140, 36);
             this.txbUsuario.Name = "txbUsuario";
-            this.txbUsuario.Size = new System.Drawing.Size(274, 23);
+            this.txbUsuario.Size = new System.Drawing.Size(274, 27);
             this.txbUsuario.TabIndex = 1;
             // 
             // txbContraseña
             // 
-            this.txbContraseña.Location = new System.Drawing.Point(106, 69);
+            this.txbContraseña.Location = new System.Drawing.Point(140, 69);
             this.txbContraseña.Name = "txbContraseña";
             this.txbContraseña.PasswordChar = '*';
-            this.txbContraseña.Size = new System.Drawing.Size(274, 23);
+            this.txbContraseña.Size = new System.Drawing.Size(274, 27);
             this.txbContraseña.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 72);
+            this.label2.Location = new System.Drawing.Point(21, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 16);
+            this.label2.Size = new System.Drawing.Size(113, 21);
             this.label2.TabIndex = 2;
             this.label2.Text = "Contraseña:";
             // 
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(159, 106);
+            this.btnAceptar.Location = new System.Drawing.Point(162, 118);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 26);
+            this.btnAceptar.Size = new System.Drawing.Size(110, 39);
             this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -84,9 +84,9 @@
             // 
             // Frm_Autorizar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 173);
+            this.ClientSize = new System.Drawing.Size(435, 199);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txbContraseña);
             this.Controls.Add(this.label2);

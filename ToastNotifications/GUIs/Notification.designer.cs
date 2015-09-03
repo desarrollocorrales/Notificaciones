@@ -46,6 +46,7 @@ namespace ToastNotifications.GUIs
             this.lblCuentaBancaria = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblNotas = new System.Windows.Forms.Label();
+            this.btnTerminarEvento = new System.Windows.Forms.Button();
             this.pnlTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.configuracionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridEventos)).BeginInit();
@@ -224,14 +225,28 @@ namespace ToastNotifications.GUIs
             this.lblNotas.Size = new System.Drawing.Size(343, 81);
             this.lblNotas.TabIndex = 3;
             // 
+            // btnTerminarEvento
+            // 
+            this.btnTerminarEvento.BackColor = System.Drawing.Color.Brown;
+            this.btnTerminarEvento.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTerminarEvento.ForeColor = System.Drawing.Color.White;
+            this.btnTerminarEvento.Location = new System.Drawing.Point(383, 378);
+            this.btnTerminarEvento.Name = "btnTerminarEvento";
+            this.btnTerminarEvento.Size = new System.Drawing.Size(355, 30);
+            this.btnTerminarEvento.TabIndex = 9;
+            this.btnTerminarEvento.Text = "Terminar Evento";
+            this.btnTerminarEvento.UseVisualStyleBackColor = false;
+            this.btnTerminarEvento.Click += new System.EventHandler(this.btnTerminarEvento_Click);
+            // 
             // Notification
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Brown;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(750, 420);
             this.ControlBox = false;
+            this.Controls.Add(this.btnTerminarEvento);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -284,5 +299,6 @@ namespace ToastNotifications.GUIs
         private System.Windows.Forms.BindingSource eventosBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colnombre;
         private DevExpress.XtraGrid.Columns.GridColumn colcantidad;
+        private System.Windows.Forms.Button btnTerminarEvento;
     }
 }

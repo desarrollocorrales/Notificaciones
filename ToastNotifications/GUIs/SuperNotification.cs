@@ -4,12 +4,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
 using ToastNotifications.Entity;
+using ToastNotifications.Modelos;
 
 namespace ToastNotifications.GUIs
 {
     public partial class SuperNotification : Form
     {
-        private EventosEntities Contexto;
+        public List<eventos> lstEventosTest;
+        public EventosEntities Contexto;
         private static List<SuperNotification> openNotifications = new List<SuperNotification>();
         private bool _allowFocus;
         private readonly FormAnimator _animator;
@@ -123,84 +125,13 @@ namespace ToastNotifications.GUIs
         #endregion // Event Handlers
 
         #region * * *  Cargar Recordatorios  * * *
-        List<eventos> lstEventosAMostrar;
 
         private void CargarEventos()
         {
-            Contexto = crearContexto();
-
-            lstEventosAMostrar = new List<eventos>();
-            CountEventosPorDiaMes(Contexto.eventos.ToList());
-            CountEventosSemanal(Contexto.eventos.ToList());
-
-            gridEventos.DataSource = lstEventosAMostrar;
+            gridEventos.DataSource = lstEventosTest;
             gvEventos.BestFitColumns();
         }
-        private EventosEntities crearContexto()
-        {
-            string StringConnection = 
-                string.Format(Modelos.Configuraciones.SC_ServUserPassPortDatabase,
-                                                            Properties.Settings.Default.Servidor,
-                                                            Properties.Settings.Default.Usuario,
-                                                            Properties.Settings.Default.Password,
-                                                            Properties.Settings.Default.Puerto,
-                                                            Properties.Settings.Default.BaseDeDatos);
-            EventosEntities Context = new EventosEntities(StringConnection);
 
-            return Context;
-        }
-
-        private int CountEventosSemanal(List<eventos> lstEventos)
-        {
-            //Eventos que son del dia de la semana de hoy
-            List<eventos> lstEventosSemana = new List<eventos>();
-
-            DayOfWeek DiaDelaSemanaHoy = DateTime.Today.DayOfWeek;
-            switch (DiaDelaSemanaHoy)
-            {
-                case DayOfWeek.Monday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "L" && o.activo == true);
-                    break;
-
-                case DayOfWeek.Tuesday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "M" && o.activo == true);
-                    break;
-                case DayOfWeek.Wednesday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "X" && o.activo == true);
-                    break;
-                case DayOfWeek.Thursday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "J" && o.activo == true);
-                    break;
-                case DayOfWeek.Friday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "V" && o.activo == true);
-                    break;
-                case DayOfWeek.Saturday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "S" && o.activo == true);
-                    break;
-            }
-
-            //Agregar los eventos a la lista
-            lstEventosAMostrar.AddRange(lstEventosSemana);
-
-            return lstEventosSemana.Count;
-        }
-        private int CountEventosPorDiaMes(List<eventos> lstEventos)
-        {
-            int DiaDeHoy = DateTime.Today.Day;
-            List<eventos> lstEventosDeHoy =
-                lstEventos.FindAll(o => o.dia_limite == DiaDeHoy && o.activo == true);
-
-            //Agregar los eventos a la lista
-            lstEventosAMostrar.AddRange(lstEventosDeHoy);
-
-            return lstEventosDeHoy.Count;
-        }
         #endregion
 
         private void gvEventos_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -212,6 +143,68 @@ namespace ToastNotifications.GUIs
             lblBanco.Text = EventoSeleccionado.banco;
             lblCuentaBancaria.Text = EventoSeleccionado.cuenta_bancaria;
             lblNotas.Text = EventoSeleccionado.notas;  
+        }
+
+        private void btnTerminarEvento_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ValidarTerminar() == true)
+                    TerminarEvento();
+            }
+            catch (Exception ex)
+            {
+                Logger.AgregarLog(ex.ToString());
+            }
+        }
+        private void TerminarEvento()
+        {
+            Logger.AgregarLog("  --- Terminar el Evento ---  ");
+            Logger.AgregarLog("         Obtener el evento seleccionado...");
+
+            //Obtener el  evento
+            int index = gvEventos.GetSelectedRows()[0];
+            eventos evento = (eventos)gvEventos.GetRow(index);
+            Logger.AgregarLog(string.Format("         Id del evento = {0}...", evento.id_evento));
+
+            //Crear nuevo evento terminado
+            eventos_realizados evento_terminado = new eventos_realizados();
+            evento_terminado.id_evento = evento.id_evento;
+            evento_terminado.fecha = DateTime.Today.Date;
+            evento_terminado.hora = DateTime.Now.TimeOfDay;
+            evento_terminado.id_usuario = Properties.Settings.Default.id_usuario;
+            Contexto.eventos_realizados.AddObject(evento_terminado);
+            Contexto.SaveChanges();
+
+            Logger.AgregarLog("  --------------------------  ");
+            Logger.AgregarLog();
+
+            usuarios usuario = Contexto.usuarios.FirstOrDefault(o => o.id_usuario == Properties.Settings.Default.id_usuario);
+            EnviaCorreos.Enviar(evento, usuario);
+
+            ActualizarListaEventos(evento_terminado.id_evento);
+        }
+        private bool ValidarTerminar()
+        {
+            int indice = gvEventos.GetSelectedRows()[0];
+            eventos EventoSeleccionado = (eventos)gvEventos.GetRow(indice);
+
+            string Mensaje = string.Format("¿Esta seguro que desea marcar el recordatorio '{0}' como terminado?", EventoSeleccionado.nombre);
+            DialogResult dr = MessageBox.Show(Mensaje, "Validar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+                return true;
+
+            return false;
+        }
+        private void ActualizarListaEventos(long id_evento)
+        {
+            eventos evento_a_quitar = lstEventosTest.Find(o => o.id_evento == id_evento);
+            lstEventosTest.Remove(evento_a_quitar);
+            if (lstEventosTest.Count != 0)
+                CargarEventos();
+            else
+                this.Close();
         }
     }
 }

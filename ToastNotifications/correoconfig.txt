@@ -1,0 +1,4 @@
+﻿PuertoSalida=2525
+HostCorreo=mail.loscorrales.com.mx
+DireccionCorreo=automata@loscorrales.com.mx
+ContraseñaCorreo=corrales.2013

@@ -98,6 +98,7 @@
       <DependentUpon>SuperNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Configuraciones.cs" />
+    <Compile Include="Modelos\EnviaCorreos.cs" />
     <Compile Include="Modelos\Logger.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="GUIs\Notification.cs">
@@ -160,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Corrales Icon.ico" />
+    <Content Include="correoconfig.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="destinatarios.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Logs\Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

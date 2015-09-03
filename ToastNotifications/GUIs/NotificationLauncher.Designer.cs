@@ -77,25 +77,25 @@ namespace ToastNotifications.GUIs
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(492, 35);
+            this.label1.Size = new System.Drawing.Size(546, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "Configuración";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txbServidor
             // 
-            this.txbServidor.Location = new System.Drawing.Point(155, 48);
+            this.txbServidor.Location = new System.Drawing.Point(189, 51);
             this.txbServidor.Name = "txbServidor";
-            this.txbServidor.Size = new System.Drawing.Size(303, 23);
+            this.txbServidor.Size = new System.Drawing.Size(303, 27);
             this.txbServidor.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(81, 51);
+            this.label2.Location = new System.Drawing.Point(95, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 16);
+            this.label2.Size = new System.Drawing.Size(88, 21);
             this.label2.TabIndex = 1;
             this.label2.Text = "Servidor:";
             // 
@@ -103,44 +103,44 @@ namespace ToastNotifications.GUIs
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(88, 80);
+            this.label3.Location = new System.Drawing.Point(101, 87);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 16);
+            this.label3.Size = new System.Drawing.Size(82, 21);
             this.label3.TabIndex = 3;
             this.label3.Text = "Usuario:";
             // 
             // txbUsuario
             // 
-            this.txbUsuario.Location = new System.Drawing.Point(155, 77);
+            this.txbUsuario.Location = new System.Drawing.Point(189, 84);
             this.txbUsuario.Name = "txbUsuario";
-            this.txbUsuario.Size = new System.Drawing.Size(303, 23);
+            this.txbUsuario.Size = new System.Drawing.Size(303, 27);
             this.txbUsuario.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(61, 109);
+            this.label4.Location = new System.Drawing.Point(70, 120);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 16);
+            this.label4.Size = new System.Drawing.Size(113, 21);
             this.label4.TabIndex = 5;
             this.label4.Text = "Contraseña:";
             // 
             // txbContraseña
             // 
-            this.txbContraseña.Location = new System.Drawing.Point(155, 106);
+            this.txbContraseña.Location = new System.Drawing.Point(189, 117);
             this.txbContraseña.Name = "txbContraseña";
             this.txbContraseña.PasswordChar = '*';
-            this.txbContraseña.Size = new System.Drawing.Size(303, 23);
+            this.txbContraseña.Size = new System.Drawing.Size(303, 27);
             this.txbContraseña.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(92, 137);
+            this.label5.Location = new System.Drawing.Point(110, 152);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 16);
+            this.label5.Size = new System.Drawing.Size(73, 21);
             this.label5.TabIndex = 7;
             this.label5.Text = "Puerto:";
             // 
@@ -148,9 +148,9 @@ namespace ToastNotifications.GUIs
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(43, 167);
+            this.label6.Location = new System.Drawing.Point(45, 186);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 16);
+            this.label6.Size = new System.Drawing.Size(138, 21);
             this.label6.TabIndex = 9;
             this.label6.Text = "Base de Datos:";
             // 
@@ -158,9 +158,9 @@ namespace ToastNotifications.GUIs
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(41, 226);
+            this.label7.Location = new System.Drawing.Point(45, 251);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 16);
+            this.label7.Size = new System.Drawing.Size(138, 21);
             this.label7.TabIndex = 14;
             this.label7.Text = "Recordar cada:";
             // 
@@ -168,22 +168,22 @@ namespace ToastNotifications.GUIs
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(212, 226);
+            this.label8.Location = new System.Drawing.Point(246, 251);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 16);
+            this.label8.Size = new System.Drawing.Size(85, 21);
             this.label8.TabIndex = 16;
             this.label8.Text = "minutos.";
             // 
             // nudPuerto
             // 
-            this.nudPuerto.Location = new System.Drawing.Point(155, 135);
+            this.nudPuerto.Location = new System.Drawing.Point(189, 150);
             this.nudPuerto.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this.nudPuerto.Name = "nudPuerto";
-            this.nudPuerto.Size = new System.Drawing.Size(71, 23);
+            this.nudPuerto.Size = new System.Drawing.Size(71, 27);
             this.nudPuerto.TabIndex = 8;
             this.nudPuerto.Value = new decimal(new int[] {
             3306,
@@ -193,14 +193,14 @@ namespace ToastNotifications.GUIs
             // 
             // nudMinutos
             // 
-            this.nudMinutos.Location = new System.Drawing.Point(155, 224);
+            this.nudMinutos.Location = new System.Drawing.Point(189, 249);
             this.nudMinutos.Maximum = new decimal(new int[] {
             240,
             0,
             0,
             0});
             this.nudMinutos.Name = "nudMinutos";
-            this.nudMinutos.Size = new System.Drawing.Size(51, 23);
+            this.nudMinutos.Size = new System.Drawing.Size(51, 27);
             this.nudMinutos.TabIndex = 15;
             this.nudMinutos.Value = new decimal(new int[] {
             60,
@@ -211,7 +211,7 @@ namespace ToastNotifications.GUIs
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(201, 266);
+            this.btnGuardar.Location = new System.Drawing.Point(228, 289);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(90, 30);
             this.btnGuardar.TabIndex = 17;
@@ -223,9 +223,9 @@ namespace ToastNotifications.GUIs
             // 
             this.cbDataBase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDataBase.FormattingEnabled = true;
-            this.cbDataBase.Location = new System.Drawing.Point(155, 164);
+            this.cbDataBase.Location = new System.Drawing.Point(189, 183);
             this.cbDataBase.Name = "cbDataBase";
-            this.cbDataBase.Size = new System.Drawing.Size(304, 24);
+            this.cbDataBase.Size = new System.Drawing.Size(328, 27);
             this.cbDataBase.TabIndex = 10;
             this.cbDataBase.Click += new System.EventHandler(this.cbDataBase_Click);
             // 
@@ -233,27 +233,27 @@ namespace ToastNotifications.GUIs
             // 
             this.cbUsuarioSistema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUsuarioSistema.FormattingEnabled = true;
-            this.cbUsuarioSistema.Location = new System.Drawing.Point(154, 194);
+            this.cbUsuarioSistema.Location = new System.Drawing.Point(189, 216);
             this.cbUsuarioSistema.Name = "cbUsuarioSistema";
-            this.cbUsuarioSistema.Size = new System.Drawing.Size(228, 24);
+            this.cbUsuarioSistema.Size = new System.Drawing.Size(228, 27);
             this.cbUsuarioSistema.TabIndex = 12;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(34, 197);
+            this.label9.Location = new System.Drawing.Point(30, 219);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(115, 16);
+            this.label9.Size = new System.Drawing.Size(153, 21);
             this.label9.TabIndex = 11;
             this.label9.Text = "Usuario sistema:";
             // 
             // btnCargarUsuarios
             // 
             this.btnCargarUsuarios.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarUsuarios.Location = new System.Drawing.Point(388, 194);
+            this.btnCargarUsuarios.Location = new System.Drawing.Point(423, 216);
             this.btnCargarUsuarios.Name = "btnCargarUsuarios";
-            this.btnCargarUsuarios.Size = new System.Drawing.Size(70, 24);
+            this.btnCargarUsuarios.Size = new System.Drawing.Size(94, 40);
             this.btnCargarUsuarios.TabIndex = 13;
             this.btnCargarUsuarios.Text = "Cargar";
             this.btnCargarUsuarios.UseVisualStyleBackColor = true;
@@ -261,9 +261,9 @@ namespace ToastNotifications.GUIs
             // 
             // NotificationLauncher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 308);
+            this.ClientSize = new System.Drawing.Size(546, 331);
             this.Controls.Add(this.btnCargarUsuarios);
             this.Controls.Add(this.cbUsuarioSistema);
             this.Controls.Add(this.label9);

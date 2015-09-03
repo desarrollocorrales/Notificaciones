@@ -4,9 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EventosModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="EventosModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="EventosModelStoreContainer">
           <EntitySet Name="eventos" EntityType="EventosModel.Store.eventos" store:Type="Tables" Schema="calendario_pagos" />
+          <EntitySet Name="eventos_realizados" EntityType="EventosModel.Store.eventos_realizados" store:Type="Tables" Schema="calendario_pagos" />
           <EntitySet Name="eventos_usuario" EntityType="EventosModel.Store.eventos_usuario" store:Type="Tables" Schema="calendario_pagos" />
           <EntitySet Name="tipos_evento" EntityType="EventosModel.Store.tipos_evento" store:Type="Tables" Schema="calendario_pagos" />
           <EntitySet Name="tipos_usuario" EntityType="EventosModel.Store.tipos_usuario" store:Type="Tables" Schema="calendario_pagos" />
@@ -40,6 +41,17 @@
           <Property Name="dia_limite" Type="utinyint" />
           <Property Name="es_semanal" Type="bit" />
           <Property Name="dia_semana" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="eventos_realizados">
+          <Key>
+            <PropertyRef Name="id_evento" />
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_evento" Type="uint" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Nullable="false" />
+          <Property Name="id_usuario" Type="uint" Nullable="false" />
         </EntityType>
         <EntityType Name="eventos_usuario">
           <Key>
@@ -126,6 +138,7 @@
             <End Role="eventos" EntitySet="eventos" />
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
+          <EntitySet Name="eventos_realizados" EntityType="EventosModel.eventos_realizados" />
         </EntityContainer>
         <EntityType Name="eventos">
           <Key>
@@ -188,6 +201,17 @@
           <End Role="eventos" Type="EventosModel.eventos" Multiplicity="*" />
           <End Role="usuarios" Type="EventosModel.usuarios" Multiplicity="*" />
         </Association>
+        <EntityType Name="eventos_realizados">
+          <Key>
+            <PropertyRef Name="id_evento" />
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Type="Int64" Name="id_evento" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" />
+          <Property Type="Time" Name="hora" Nullable="false" />
+          <Property Type="Int64" Name="id_usuario" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -247,6 +271,16 @@
               <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="eventos_realizados">
+            <EntityTypeMapping TypeName="EventosModel.eventos_realizados">
+              <MappingFragment StoreEntitySet="eventos_realizados">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -280,6 +314,7 @@
           <ConnectorPoint PointX="4.5" PointY="2.6283268229166667" />
           <ConnectorPoint PointX="5.25" PointY="2.6283268229166667" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="EventosModel.eventos_realizados" Width="1.5" PointX="9.5" PointY="1.75" Height="1.7879850260416674" />
       </Diagram>
     </Diagrams>
   </Designer>

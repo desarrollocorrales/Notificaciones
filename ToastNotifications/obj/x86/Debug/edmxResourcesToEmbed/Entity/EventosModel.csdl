@@ -13,6 +13,7 @@
       <End Role="eventos" EntitySet="eventos" />
       <End Role="usuarios" EntitySet="usuarios" />
     </AssociationSet>
+    <EntitySet Name="eventos_realizados" EntityType="EventosModel.eventos_realizados" />
   </EntityContainer>
   <EntityType Name="eventos">
     <Key>
@@ -75,4 +76,15 @@
     <End Role="eventos" Type="EventosModel.eventos" Multiplicity="*" />
     <End Role="usuarios" Type="EventosModel.usuarios" Multiplicity="*" />
   </Association>
+  <EntityType Name="eventos_realizados">
+    <Key>
+      <PropertyRef Name="id_evento" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Type="Int64" Name="id_evento" Nullable="false" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" />
+    <Property Type="Time" Name="hora" Nullable="false" />
+    <Property Type="Int64" Name="id_usuario" Nullable="false" />
+  </EntityType>
 </Schema>

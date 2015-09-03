@@ -135,6 +135,22 @@ namespace ToastNotifications.Entity
             }
         }
         private ObjectSet<usuarios> _usuarios;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<eventos_realizados> eventos_realizados
+        {
+            get
+            {
+                if ((_eventos_realizados == null))
+                {
+                    _eventos_realizados = base.CreateObjectSet<eventos_realizados>("eventos_realizados");
+                }
+                return _eventos_realizados;
+            }
+        }
+        private ObjectSet<eventos_realizados> _eventos_realizados;
 
         #endregion
 
@@ -170,6 +186,14 @@ namespace ToastNotifications.Entity
         public void AddTousuarios(usuarios usuarios)
         {
             base.AddObject("usuarios", usuarios);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet eventos_realizados. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToeventos_realizados(eventos_realizados eventos_realizados)
+        {
+            base.AddObject("eventos_realizados", eventos_realizados);
         }
 
         #endregion
@@ -571,6 +595,147 @@ namespace ToastNotifications.Entity
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EventosModel", Name="eventos_realizados")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class eventos_realizados : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto eventos_realizados.
+        /// </summary>
+        /// <param name="id_evento">Valor inicial de la propiedad id_evento.</param>
+        /// <param name="fecha">Valor inicial de la propiedad fecha.</param>
+        /// <param name="hora">Valor inicial de la propiedad hora.</param>
+        /// <param name="id_usuario">Valor inicial de la propiedad id_usuario.</param>
+        public static eventos_realizados Createeventos_realizados(global::System.Int64 id_evento, global::System.DateTime fecha, global::System.TimeSpan hora, global::System.Int64 id_usuario)
+        {
+            eventos_realizados eventos_realizados = new eventos_realizados();
+            eventos_realizados.id_evento = id_evento;
+            eventos_realizados.fecha = fecha;
+            eventos_realizados.hora = hora;
+            eventos_realizados.id_usuario = id_usuario;
+            return eventos_realizados;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id_evento
+        {
+            get
+            {
+                return _id_evento;
+            }
+            set
+            {
+                if (_id_evento != value)
+                {
+                    Onid_eventoChanging(value);
+                    ReportPropertyChanging("id_evento");
+                    _id_evento = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_evento");
+                    Onid_eventoChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id_evento;
+        partial void Onid_eventoChanging(global::System.Int64 value);
+        partial void Onid_eventoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime fecha
+        {
+            get
+            {
+                return _fecha;
+            }
+            set
+            {
+                if (_fecha != value)
+                {
+                    OnfechaChanging(value);
+                    ReportPropertyChanging("fecha");
+                    _fecha = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("fecha");
+                    OnfechaChanged();
+                }
+            }
+        }
+        private global::System.DateTime _fecha;
+        partial void OnfechaChanging(global::System.DateTime value);
+        partial void OnfechaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.TimeSpan hora
+        {
+            get
+            {
+                return _hora;
+            }
+            set
+            {
+                OnhoraChanging(value);
+                ReportPropertyChanging("hora");
+                _hora = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("hora");
+                OnhoraChanged();
+            }
+        }
+        private global::System.TimeSpan _hora;
+        partial void OnhoraChanging(global::System.TimeSpan value);
+        partial void OnhoraChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id_usuario
+        {
+            get
+            {
+                return _id_usuario;
+            }
+            set
+            {
+                if (_id_usuario != value)
+                {
+                    Onid_usuarioChanging(value);
+                    ReportPropertyChanging("id_usuario");
+                    _id_usuario = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_usuario");
+                    Onid_usuarioChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id_usuario;
+        partial void Onid_usuarioChanging(global::System.Int64 value);
+        partial void Onid_usuarioChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>

@@ -4,11 +4,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
 using ToastNotifications.Entity;
+using ToastNotifications.Modelos;
 
 namespace ToastNotifications.GUIs
 {
     public partial class Notification : Form
     {
+        public List<eventos> lstEventosTest;
         private EventosEntities Contexto;
         private static List<Notification> openNotifications = new List<Notification>();
         private bool _allowFocus;
@@ -65,6 +67,9 @@ namespace ToastNotifications.GUIs
             }
 
             openNotifications.Add(this);
+            
+            //Crear el contexto
+            Contexto = crearContexto();
         }
 
         private void Notification_Activated(object sender, EventArgs e)
@@ -79,7 +84,9 @@ namespace ToastNotifications.GUIs
 
         private void Notification_Shown(object sender, EventArgs e)
         {
-            CargarEventos();
+            //CargarEventos();
+            gridEventos.DataSource = lstEventosTest;
+            gvEventos.BestFitColumns();
 
             // Once the animation has completed the form can receive focus
             _allowFocus = true;
@@ -126,9 +133,7 @@ namespace ToastNotifications.GUIs
         List<eventos> lstEventosAMostrar;
 
         private void CargarEventos()
-        {
-            Contexto = crearContexto();
-
+        {            
             usuarios user = Contexto.usuarios.FirstOrDefault(o => o.id_usuario == Properties.Settings.Default.id_usuario);
 
             //Tipo de Mes Par o Non
@@ -141,6 +146,7 @@ namespace ToastNotifications.GUIs
             lstEventosAMostrar = new List<eventos>();
             CountEventosPorDiaMes(user.eventos.ToList(), tipoMes);
             CountEventosSemanal(user.eventos.ToList(), tipoMes);
+            QuitarEventosTerminados();
 
             gridEventos.DataSource = lstEventosAMostrar;
             gvEventos.BestFitColumns();
@@ -208,14 +214,46 @@ namespace ToastNotifications.GUIs
         private int CountEventosPorDiaMes(List<eventos> lstEventos, string tipoMes)
         {
             int DiaDeHoy = DateTime.Today.Day;
-            List<eventos> lstEventosDeHoy =
-                lstEventos.FindAll(o => o.dia_limite == DiaDeHoy && o.activo == true &&
-                                       (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+            int iDiasDelMes = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
 
-            //Agregar los eventos a la lista
-            lstEventosAMostrar.AddRange(lstEventosDeHoy);
+            foreach (eventos evento in lstEventos)
+            {
+                byte? dia_limite = evento.dia_limite;
+                if (dia_limite != null)
+                {
+                    Logger.AgregarLog("         El evento es por dia del mes...");
+                    if (dia_limite > iDiasDelMes)
+                    {
+                        Logger.AgregarLog("         El dia configurado es mayor al ultimo dia en el mes...");
+                        dia_limite = Convert.ToByte(iDiasDelMes);
+                        Logger.AgregarLog(string.Format("         El dia cambia al ultimo dia del mes [{0}]...", dia_limite));
+                    }
 
-            return lstEventosDeHoy.Count;
+                    if ((dia_limite == DateTime.Today.Day) && 
+                        (evento.tipos_evento.id_tipo_evento == "T" || evento.tipos_evento.id_tipo_evento == tipoMes))
+                    {
+                        Logger.AgregarLog(string.Format("         Se agrega el evento con id {0} nombre {1}...", evento.id_evento, evento.nombre));
+                        lstEventosAMostrar.Add(evento);
+                    }
+                }
+            }
+
+            return lstEventosAMostrar.Count;
+        }
+        private void QuitarEventosTerminados()
+        {
+            Logger.AgregarLog("       Obtener la lista de todos los eventos terminados el dia de hoy...");
+            List<eventos_realizados> lstEventosRealizados = Contexto.eventos_realizados.Where(o => o.fecha == DateTime.Today.Date).ToList();
+
+            Logger.AgregarLog("       Quitar los eventos terminados de la lista...");
+            foreach (eventos_realizados evento_realizado in lstEventosRealizados)
+            {
+                eventos evento_a_quitar = lstEventosAMostrar.FirstOrDefault(o => o.id_evento == evento_realizado.id_evento);
+                if (evento_a_quitar != null)
+                {
+                    lstEventosAMostrar.Remove(evento_a_quitar);
+                }
+            }
         }
         #endregion
 
@@ -228,6 +266,69 @@ namespace ToastNotifications.GUIs
             lblBanco.Text = EventoSeleccionado.banco;
             lblCuentaBancaria.Text = EventoSeleccionado.cuenta_bancaria;
             lblNotas.Text = EventoSeleccionado.notas;  
+        }
+
+        private void btnTerminarEvento_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ValidarTerminar() == true)
+                    TerminarEvento();
+            }
+            catch (Exception ex)
+            {
+                Logger.AgregarLog(ex.ToString());
+            }
+        }
+        private bool ValidarTerminar()
+        {
+            int indice = gvEventos.GetSelectedRows()[0];
+            eventos EventoSeleccionado = (eventos)gvEventos.GetRow(indice);
+
+            string Mensaje = string.Format("¿Esta seguro que desea marcar el recordatorio '{0}' como terminado?", EventoSeleccionado.nombre);
+            DialogResult dr = MessageBox.Show(Mensaje,"Validar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+                return true;
+
+            return false;
+        }
+        private void TerminarEvento()
+        {
+            Logger.AgregarLog("  --- Terminar el Evento ---  ");
+            Logger.AgregarLog("         Obtener el evento seleccionado...");
+            
+            //Obtener el  evento
+            int index = gvEventos.GetSelectedRows()[0];
+            eventos evento = (eventos)gvEventos.GetRow(index);
+            Logger.AgregarLog(string.Format("         Id del evento = {0}...", evento.id_evento));
+
+            //Crear nuevo evento terminado
+            eventos_realizados evento_terminado = new eventos_realizados();
+            evento_terminado.id_evento = evento.id_evento;
+            evento_terminado.fecha = DateTime.Today.Date;
+            evento_terminado.hora = DateTime.Now.TimeOfDay;
+            evento_terminado.id_usuario = Properties.Settings.Default.id_usuario;
+            Contexto.eventos_realizados.AddObject(evento_terminado);
+            Contexto.SaveChanges();
+
+            Logger.AgregarLog("  --------------------------  ");
+            Logger.AgregarLog();
+
+            usuarios usuario = Contexto.usuarios.FirstOrDefault(o => o.id_usuario == Properties.Settings.Default.id_usuario);
+            EnviaCorreos.Enviar(evento, usuario);
+
+            ActualizarListaEventos(evento_terminado.id_evento);
+        }
+
+        private void ActualizarListaEventos(long id_evento)
+        {
+            eventos evento_a_quitar = lstEventosTest.Find(o => o.id_evento == id_evento);
+            lstEventosTest.Remove(evento_a_quitar);
+            if (lstEventosTest.Count != 0)
+                CargarEventos();
+            else
+                this.Close();
         }
     }
 }

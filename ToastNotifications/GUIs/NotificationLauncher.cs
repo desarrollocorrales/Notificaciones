@@ -22,80 +22,27 @@ namespace ToastNotifications.GUIs
         {
             try
             {
-                lstEventosAMostrar = new List<eventos>();
-
                 string StringConnection =
-                string.Format(Modelos.Configuraciones.SC_ServUserPassPortDatabase,
-                                                            Properties.Settings.Default.Servidor,
-                                                            Properties.Settings.Default.Usuario,
-                                                            Properties.Settings.Default.Password,
-                                                            Properties.Settings.Default.Puerto,
-                                                            Properties.Settings.Default.BaseDeDatos);
+                    string.Format(Modelos.Configuraciones.SC_ServUserPassPortDatabase,
+                                    Properties.Settings.Default.Servidor, Properties.Settings.Default.Usuario,
+                                    Properties.Settings.Default.Password, Properties.Settings.Default.Puerto,
+                                    Properties.Settings.Default.BaseDeDatos);
 
+                Logger.AgregarLog("Crear el contexto de la base de datos...");
                 EventosEntities Contexto = new EventosEntities(StringConnection);
 
-                var animationMethod = FormAnimator.AnimationMethod.Fade;
-                var animationDirection = FormAnimator.AnimationDirection.Up;
-                var toastNotification = new Notification(animationMethod, animationDirection);
-
+                Logger.AgregarLog("Obtener el usuario configurado...");
                 usuarios user = Contexto.usuarios.FirstOrDefault(o => o.id_usuario == Properties.Settings.Default.id_usuario);
-                List<eventos> lstEventos = user.eventos.ToList();
-
+            
                 if (user.id_tipousuario == "S")
                 {
-                    Logger.AgregarLog("Es Super Usuario");
                     //Super Usuario
-                    int iDia = DateTime.Today.Day;
-
-                    string sDia = string.Empty;
-                    switch (DateTime.Today.DayOfWeek)
-                    {
-                        case DayOfWeek.Monday:      sDia = "L"; break;
-                        case DayOfWeek.Tuesday:     sDia = "M"; break;
-                        case DayOfWeek.Wednesday:   sDia = "X"; break;
-                        case DayOfWeek.Thursday:    sDia = "J"; break;
-                        case DayOfWeek.Friday:      sDia = "V"; break;
-                        case DayOfWeek.Saturday:    sDia = "S"; break;
-                    }
-
-                    lstEventos = Contexto
-                                    .eventos
-                                    .ToList()
-                                    .FindAll(o=>o.activo == true && (o.dia_limite == iDia || o.dia_semana == sDia))
-                                    .ToList();
-
-                    if (lstEventos.Count != 0)
-                    {
-                        animationMethod = FormAnimator.AnimationMethod.Fade;
-                        animationDirection = FormAnimator.AnimationDirection.Up;
-                        var superToastNotification = new SuperNotification(animationMethod, animationDirection);
-                        superToastNotification.Show();
-                    }
+                    MostrarRecordatorioSuperUsuario(Contexto);                    
                 }
                 else
                 {
-                    Logger.AgregarLog("Es usuario normal");
                     //Usuario Normal
-
-                    //Tipo de Mes Par o Non
-                    string tipoMes = string.Empty;
-                    if ((DateTime.Today.Month % 2) == 0)
-                        tipoMes = "P";
-                    else
-                        tipoMes = "N";
-
-                    //Eventos que son por dia de la semana 
-                    int iEventosDiaSemana = CountEventosSemanal(lstEventos, tipoMes);
-
-                    //Eventos que son del dia de hoy
-                    int iEventosDelDiaMes = CountEventosPorDiaMes(lstEventos, tipoMes);
-
-                    Logger.AgregarLog(string.Format("Eventos Semanales: {0}. Eventos del dia: {1}", iEventosDiaSemana, iEventosDelDiaMes));
-
-                    if (iEventosDelDiaMes != 0 || iEventosDiaSemana != 0)
-                    {
-                        toastNotification.Show();
-                    }
+                    MostrarRecordatoriosUsuario(Contexto, user);
                 }
             }
             catch (Exception ex)
@@ -104,63 +51,196 @@ namespace ToastNotifications.GUIs
                 MessageBox.Show(ex.ToString());
             }
         }
-        private int CountEventosSemanal(List<eventos> lstEventos, string tipoMes)
+
+        private void MostrarRecordatorioSuperUsuario(EventosEntities Contexto)
         {
-            //Eventos que son del dia de la semana de hoy
-            List<eventos> lstEventosSemana = new List<eventos>();
+            Logger.AgregarLog("Es Super Usuario...");
 
-            DayOfWeek DiaDelaSemanaHoy = DateTime.Today.DayOfWeek;
-            switch (DiaDelaSemanaHoy)
+            int iDia = DateTime.Today.Day;
+            int iDiasDelMes = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            string sDia = string.Empty;
+
+            switch (DateTime.Today.DayOfWeek)
             {
-                case DayOfWeek.Monday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "L" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
-                    break;
-
-                case DayOfWeek.Tuesday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "M" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
-                    break;
-                case DayOfWeek.Wednesday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "X" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
-                    break;
-                case DayOfWeek.Thursday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "J" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
-                    break;
-                case DayOfWeek.Friday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "V" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
-                    break;
-                case DayOfWeek.Saturday:
-                    lstEventosSemana =
-                        lstEventos.FindAll(o => o.dia_semana == "S" && o.activo == true &&
-                                               (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
-                    break;
+                case DayOfWeek.Monday: sDia = "L"; break;
+                case DayOfWeek.Tuesday: sDia = "M"; break;
+                case DayOfWeek.Wednesday: sDia = "X"; break;
+                case DayOfWeek.Thursday: sDia = "J"; break;
+                case DayOfWeek.Friday: sDia = "V"; break;
+                case DayOfWeek.Saturday: sDia = "S"; break;
             }
 
-            //Agregar los eventos a la lista
-            lstEventosAMostrar.AddRange(lstEventosSemana);
+            string sTipoMes = string.Empty;
+            if (DateTime.Today.Month % 2 == 0)
+            {
+                sTipoMes = "P";
+            }
+            else
+            {
+                sTipoMes = "N";
+            }
 
-            return lstEventosSemana.Count;
+            Logger.AgregarLog("     Obtener todos los eventos activos de todos los usuarios...");
+            List<eventos> lstEventos = Contexto.eventos.Where(o => o.activo == true).ToList();
+            Logger.AgregarLog("     Obtener todos los eventos semanales...");
+            List<eventos> lstEventosSemanales = 
+                Contexto.eventos.Where(o =>  o.activo == true 
+                                         &&  o.dia_semana == sDia
+                                         && (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == sTipoMes)).ToList();
+
+            Logger.AgregarLog(string.Format("     Obtener todos los eventos por número de día [{0}]...", iDia));
+            List<eventos> lstEventosDelDia = new List<eventos>();
+            foreach (eventos evento in lstEventos)
+            {
+                byte? dia_limite = evento.dia_limite;
+                if (dia_limite != null)
+                {
+                    Logger.AgregarLog("         El evento es por dia del mes...");
+                    if (dia_limite > iDiasDelMes)
+                    {
+                        Logger.AgregarLog("         El dia configurado es mayor al ultimo dia en el mes...");
+                        dia_limite = Convert.ToByte(iDiasDelMes);
+                        Logger.AgregarLog(string.Format("         El dia cambia al ultimo dia del mes [{0}]...", dia_limite));
+                    }
+
+                    if ((dia_limite == DateTime.Today.Day) && 
+                        (evento.tipos_evento.id_tipo_evento == "T" || evento.tipos_evento.id_tipo_evento == sTipoMes))
+                    {
+                        Logger.AgregarLog(string.Format("         Se agrega el evento con id {0} nombre {1}...", evento.id_evento, evento.nombre));
+                        lstEventosDelDia.Add(evento);
+                    }
+                }
+            }
+
+            Logger.AgregarLog("     Crear una lista con todos los eventos...");
+
+            lstEventosAMostrar = new List<eventos>();
+            lstEventosAMostrar.AddRange(lstEventosSemanales);
+            lstEventosAMostrar.AddRange(lstEventosDelDia);
+
+            Logger.AgregarLog("     Obtener la lista de todos los eventos terminados el dia de hoy...");
+            List<eventos_realizados> lstEventosRealizados = Contexto.eventos_realizados.Where(o => o.fecha == DateTime.Today.Date).ToList();
+
+            Logger.AgregarLog("     Quitar los eventos terminados de la lista...");
+            foreach (eventos_realizados evento_realizado in lstEventosRealizados)
+            {
+                eventos evento_a_quitar = lstEventos.FirstOrDefault(o => o.id_evento == evento_realizado.id_evento);
+                if (evento_a_quitar != null)
+                {
+                    lstEventosAMostrar.Remove(evento_a_quitar);
+                }
+            }
+
+            if (lstEventosAMostrar.Count != 0)
+            {
+                Logger.AgregarLog(string.Format("     Se mostrarán {0} eventos...", lstEventos.Count));
+
+                var animationMethod = FormAnimator.AnimationMethod.Fade;
+                var animationDirection = FormAnimator.AnimationDirection.Up;
+                var superToastNotification = new SuperNotification(animationMethod, animationDirection);
+                
+                superToastNotification.Contexto = Contexto;
+                superToastNotification.lstEventosTest = lstEventosAMostrar;
+                superToastNotification.Show();
+            }
         }
-        private int CountEventosPorDiaMes(List<eventos> lstEventos, string tipoMes)
+
+        private void MostrarRecordatoriosUsuario(EventosEntities Contexto, usuarios usuario)
         {
-            int DiaDeHoy = DateTime.Today.Day;
-            List<eventos> lstEventosDeHoy =
-                lstEventos.FindAll(o => o.dia_limite == DiaDeHoy && o.activo == true &&
-                                       (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento == tipoMes));
+            Logger.AgregarLog("Es Usuario Normal...");
 
-            //Agregar los eventos a la lista
-            lstEventosAMostrar.AddRange(lstEventosDeHoy);
+            int iDia = DateTime.Today.Day;
+            int iDiasDelMes = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            string sDia = string.Empty;
 
-            return lstEventosDeHoy.Count;
+            switch (DateTime.Today.DayOfWeek)
+            {
+                case DayOfWeek.Monday: 
+                    sDia = "L"; break;
+                case DayOfWeek.Tuesday: 
+                    sDia = "M"; break;
+                case DayOfWeek.Wednesday: 
+                    sDia = "X"; break;
+                case DayOfWeek.Thursday: 
+                    sDia = "J"; break;
+                case DayOfWeek.Friday: 
+                    sDia = "V"; break;
+                case DayOfWeek.Saturday: 
+                    sDia = "S"; break;
+            }
+
+            string sTipoMes = string.Empty;
+            if (DateTime.Today.Month % 2 == 0)
+            {
+                sTipoMes = "P";
+            }
+            else
+            {
+                sTipoMes = "N";
+            }
+
+            Logger.AgregarLog("     Obtener todos los eventos activos del usuario...");
+            List<eventos> lstEventos = 
+                usuario
+                .eventos
+                .Where(o => o.activo == true && 
+                           (o.tipos_evento.id_tipo_evento == "T" || o.tipos_evento.id_tipo_evento==sTipoMes)).ToList();
+
+            Logger.AgregarLog(string.Format("     Obtener todos los eventos semanales del dia [{0}]...", sDia));
+            List<eventos> lstEventosSemanales = lstEventos.Where(o => o.dia_semana == sDia).ToList();
+
+            Logger.AgregarLog(string.Format("     Obtener todos los eventos por número de día [{0}]...", iDia));
+            List<eventos> lstEventosDelDia = new List<eventos>();
+            foreach (eventos evento in lstEventos)
+            {
+                byte? dia_limite = evento.dia_limite;
+                if (dia_limite != null)
+                {
+                    Logger.AgregarLog("         El evento es por dia del mes...");
+                    if (dia_limite > iDiasDelMes)
+                    {
+                        Logger.AgregarLog("         El dia configurado es mayor al ultimo dia en el mes...");
+                        dia_limite = Convert.ToByte(iDiasDelMes);
+                        Logger.AgregarLog(string.Format("         El dia cambia al ultimo dia del mes [{0}]...", dia_limite));
+                    }
+
+                    if (dia_limite == DateTime.Today.Day)
+                    {
+                        Logger.AgregarLog(string.Format("         Se agrega el evento con id {0} nombre {1}...", evento.id_evento, evento.nombre));
+                        lstEventosDelDia.Add(evento);
+                    }
+                }
+            }
+
+            Logger.AgregarLog("     Crear una lista con todos los eventos...");
+            lstEventosAMostrar = new List<eventos>();
+            lstEventosAMostrar.AddRange(lstEventosSemanales);
+            lstEventosAMostrar.AddRange(lstEventosDelDia);
+
+            Logger.AgregarLog("     Obtener la lista de todos los eventos terminados el dia de hoy...");
+            List<eventos_realizados> lstEventosRealizados = Contexto.eventos_realizados.Where(o => o.fecha == DateTime.Today.Date).ToList();
+
+            Logger.AgregarLog("     Quitar los eventos terminados de la lista...");
+            foreach (eventos_realizados evento_realizado in lstEventosRealizados)
+            {
+                eventos evento_a_quitar = lstEventos.FirstOrDefault(o => o.id_evento == evento_realizado.id_evento);
+                if (evento_a_quitar != null)
+                {
+                    lstEventosAMostrar.Remove(evento_a_quitar);
+                }
+            }
+
+            if (lstEventosAMostrar.Count != 0)
+            {
+                Logger.AgregarLog(string.Format("     Se mostrarán {0} eventos...", lstEventos.Count));
+
+                var animationMethod = FormAnimator.AnimationMethod.Fade;
+                var animationDirection = FormAnimator.AnimationDirection.Up;
+                var ToastNotification = new Notification(animationMethod, animationDirection);
+
+                ToastNotification.lstEventosTest = lstEventosAMostrar;
+                ToastNotification.Show();
+            }
         }
 
         private void NotificationLauncher_Load(object sender, EventArgs e)
@@ -184,7 +264,7 @@ namespace ToastNotifications.GUIs
         }
         private void Iniciar()
         {
-            Logger.AgregarLog("Iniciar conteo");
+            Logger.AgregarLog("Iniciar Conteo...");
             IconoBarra.Visible = true;            
             Temporizador.Enabled = true;
             this.Hide();
@@ -202,11 +282,12 @@ namespace ToastNotifications.GUIs
             MinutosTranscurridos++;
             Logger.AgregarLog("Minutos transcurridos: " + MinutosTranscurridos);
 
-            if (MinutosTranscurridos == Properties.Settings.Default.Minutos)
+            if (MinutosTranscurridos >= Properties.Settings.Default.Minutos)
             {
-                Logger.AgregarLog("Mostrar Eventos del usuario");
-
-                ShowNotification();
+                Logger.AgregarLog(" --- Mostrar Eventos del usuario --- ");
+                    ShowNotification();
+                Logger.AgregarLog(" ---       Terminar Proceso      --- ");
+                Logger.AgregarLog();
 
                 MinutosTranscurridos = 0;
             }

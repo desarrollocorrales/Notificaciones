@@ -54,5 +54,15 @@
         <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="eventos_realizados">
+      <EntityTypeMapping TypeName="EventosModel.eventos_realizados">
+        <MappingFragment StoreEntitySet="eventos_realizados">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
