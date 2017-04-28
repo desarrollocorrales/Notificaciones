@@ -48,7 +48,6 @@ namespace ToastNotifications.GUIs
             catch (Exception ex)
             {
                 Logger.AgregarLog(ex.ToString());
-                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -102,6 +101,24 @@ namespace ToastNotifications.GUIs
                         dia_limite = Convert.ToByte(iDiasDelMes);
                         Logger.AgregarLog(string.Format("         El dia cambia al ultimo dia del mes [{0}]...", dia_limite));
                     }
+                    
+                    //******************** Agregado el 07/09/2015 ****************************************************************************
+                    //Si el dia es sabado o domingo recorrerlo al dia habil anterior
+                    Logger.AgregarLog("         Si el dia es sabado o domingo recorrerlo al dia habil anterior...");
+                    DateTime fechDeEvento = new DateTime(DateTime.Today.Year, DateTime.Today.Month, Convert.ToInt32(evento.dia_limite));
+                    if (fechDeEvento.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        //El evento cae en domingo
+                        Logger.AgregarLog("         El evento cae en domingo, atrasar el dia limite 2 dias...");
+                        dia_limite -= 2;
+                    }
+                    else if (fechDeEvento.DayOfWeek == DayOfWeek.Saturday)
+                    {
+                        //El evento cae en sabado
+                        Logger.AgregarLog("         El evento cae en sabado, atrasar el dia limite 1 dia...");
+                        dia_limite -= 1;
+                    }
+                    //******************** Fin del Agregado el 07/09/2015 ********************************************************************
 
                     if ((dia_limite == DateTime.Today.Day) && 
                         (evento.tipos_evento.id_tipo_evento == "T" || evento.tipos_evento.id_tipo_evento == sTipoMes))
@@ -203,6 +220,24 @@ namespace ToastNotifications.GUIs
                         dia_limite = Convert.ToByte(iDiasDelMes);
                         Logger.AgregarLog(string.Format("         El dia cambia al ultimo dia del mes [{0}]...", dia_limite));
                     }
+
+                    //******************** Agregado el 07/09/2015 ****************************************************************************
+                    //Si el dia es sabado o domingo recorrerlo al dia habil anterior
+                    Logger.AgregarLog("         Si el dia es sabado o domingo recorrerlo al dia habil anterior...");
+                    DateTime fechDeEvento = new DateTime(DateTime.Today.Year, DateTime.Today.Month, Convert.ToInt32(dia_limite));
+                    if (fechDeEvento.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        //El evento cae en domingo
+                        Logger.AgregarLog("         El evento cae en domingo, atrasar el dia limite 2 dias...");
+                        dia_limite -= 2;
+                    }
+                    else if (fechDeEvento.DayOfWeek == DayOfWeek.Saturday)
+                    {
+                        //El evento cae en sabado
+                        Logger.AgregarLog("         El evento cae en sabado, atrasar el dia limite 1 dia...");
+                        dia_limite -= 1;
+                    }
+                    //******************** Fin del Agregado el 07/09/2015 ********************************************************************
 
                     if (dia_limite == DateTime.Today.Day)
                     {

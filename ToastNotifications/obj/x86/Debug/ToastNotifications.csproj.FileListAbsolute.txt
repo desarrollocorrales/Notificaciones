@@ -66,13 +66,12 @@ D:\Mis Documentos\Visual Studio 2010\Projects\Notificaciones\ToastNotifications\
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Autorizar.resources
 D:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.SuperNotification.resources
 D:\Github\Notificaciones\ToastNotifications\bin\Debug\Logs\Readme.txt
-G:\Github\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe.config
-G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe
-G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.pdb
+G:\Github\Notificaciones\ToastNotifications\bin\Debug\correoconfig.txt
+G:\Github\Notificaciones\ToastNotifications\bin\Debug\destinatarios.txt
 G:\Github\Notificaciones\ToastNotifications\bin\Debug\Logs\Readme.txt
+G:\Github\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe.config
 G:\Github\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.exe
 G:\Github\Notificaciones\ToastNotifications\bin\Debug\ToastNotifications.pdb
-G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csprojResolveAssemblyReference.cache
 G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Frm_Autorizar.resources
 G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.SuperNotification.resources
 G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUIs.Notification.resources
@@ -80,5 +79,6 @@ G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.GUI
 G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.Properties.Resources.resources
 G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csproj.GenerateResource.Cache
 G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe.licenses
-G:\Github\Notificaciones\ToastNotifications\bin\Debug\destinatarios.txt
-G:\Github\Notificaciones\ToastNotifications\bin\Debug\correoconfig.txt
+G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.exe
+G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.pdb
+G:\Github\Notificaciones\ToastNotifications\obj\x86\Debug\ToastNotifications.csprojResolveAssemblyReference.cache

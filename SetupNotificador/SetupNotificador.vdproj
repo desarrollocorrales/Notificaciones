@@ -693,7 +693,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Notificador"
         "ProductCode" = "8:{EAA0FA18-B3A8-4E1C-A262-1A1B02A6B081}"
-        "PackageCode" = "8:{95C60856-92DC-4343-AEE2-3D4C14F918DE}"
+        "PackageCode" = "8:{C3C90CB8-A689-40E2-8F14-B86BCE872FA7}"
         "UpgradeCode" = "8:{5DE8DB3F-5AE0-48EE-8AFA-F440821F0EED}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
